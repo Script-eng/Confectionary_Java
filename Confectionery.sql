@@ -38,7 +38,7 @@ CREATE TABLE `Confections` (
 -- Dumping data for table `Confections`
 --
 
-INSERT INTO `Confections` (`id`, `cname`, `type`, `prizewinning`) VALUES
+INSERT INTO `Confections` (`confectionID`, `cname`, `type`, `prizewinning`) VALUES
 (1, 'Süni', 'mixed', 0),
 (2, 'Gesztenyealagút', 'mixed', 0),
 (3, 'Sajtos pogácsa salty', 'biscuit', 0),
@@ -195,7 +195,7 @@ CREATE TABLE `Contents` (
 -- Dumping data for table `Contents`
 --
 
-INSERT INTO `Contents` (`id`, `confid`, `free`) VALUES
+INSERT INTO `Contents` (`contetID`, `confID`, `free`) VALUES
 (1, 26, 'G'),
 (2, 37, 'L'),
 (3, 83, 'HC'),
@@ -249,8 +249,8 @@ INSERT INTO `Contents` (`id`, `confid`, `free`) VALUES
 --
 
 CREATE TABLE `Prices` (
-  `id` bigint(20) DEFAULT NULL,
-  `confid` bigint(20) DEFAULT NULL,
+  `priceID` bigint(20) DEFAULT NULL,
+  `confID` bigint(20) DEFAULT NULL,
   `price` bigint(20) DEFAULT NULL,
   `unit` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -259,7 +259,7 @@ CREATE TABLE `Prices` (
 -- Dumping data for table `Prices`
 --
 
-INSERT INTO `Prices` (`id`, `confid`, `price`, `unit`) VALUES
+INSERT INTO `Prices` (`priceID`, `confID`, `price`, `unit`) VALUES
 (1, 32, 500, 'pce'),
 (2, 76, 10900, '16 slices'),
 (3, 106, 4300, '8 slices'),
