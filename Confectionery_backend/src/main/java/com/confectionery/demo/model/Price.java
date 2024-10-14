@@ -4,8 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedStoredProcedureQuery;
 
 @Entity
+@NamedStoredProcedureQuery(name="getAllPrices", procedureName="getAllPrices")
 public class Price {
     
     @Id

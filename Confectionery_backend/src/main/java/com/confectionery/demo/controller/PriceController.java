@@ -21,6 +21,12 @@ public class PriceController {
         return priceService.findAll();
     }
 
+    @GetMapping("/getPriceByConfID/@confID")
+    public String getPriceByConfID(@RequestParam String confID) {
+        return new String();
+    }    
+
+
     @GetMapping("/echo")
     public String echo(@RequestParam(value = "name", defaultValue = "World") String name) {
         return String.format("Hello %s!", name);

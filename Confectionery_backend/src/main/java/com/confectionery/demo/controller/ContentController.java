@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.confectionery.demo.Service.ContentService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class ContentController{
@@ -18,5 +20,12 @@ public class ContentController{
     public List<Content> getAllContents() {
         return contentService.findAll();
     }
+
+    @GetMapping("/getContentByfree/@free")
+    public String getContentByfree(@RequestParam String free) {
+        return new String();
+    }
+    
+    
     
 }
