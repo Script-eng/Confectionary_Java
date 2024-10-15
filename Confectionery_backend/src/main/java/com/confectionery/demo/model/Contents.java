@@ -5,21 +5,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tbl_contents")
-public class Content {
+public class Contents {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "contentID", nullable = false, updatable = false)
     private Long contentID;
 
-    @Column(name = "confID", nullable = false)
     private Long confID;
 
-    @Column(name = "free", nullable = false, columnDefinition = "TEXT")
     private String free;
 
     // Getters and setters

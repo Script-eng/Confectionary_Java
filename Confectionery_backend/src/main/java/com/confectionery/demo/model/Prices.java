@@ -4,15 +4,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedStoredProcedureQuery;
 
 @Entity
-@NamedStoredProcedureQuery(name="getAllPrices", procedureName="getAllPrices")
-public class Price {
+public class Prices {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long contentID;
+    private Long priceID;
 
     private Long confID;
 
@@ -21,12 +19,12 @@ public class Price {
     private Long unit;
 
     // Getters and setters
-    public Long getContentID() {
-        return contentID;
+    public Long getPriceID() {
+        return priceID;
     }
 
-    public void setContentID(Long contentID) {
-        this.contentID = contentID;
+    public void setPriceID(Long priceID) {
+        this.priceID = priceID;
     }
 
     public Long getConfID() {

@@ -5,24 +5,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tbl_confections")
-public class Confection {
+public class Confections {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "confectionsID", nullable = false, updatable = false)
     private Long confectionsID;
-
-    @Column(name = "cname", nullable = false, columnDefinition = "TEXT")
     private String cname;
-
-    @Column(name = "type", nullable = false, columnDefinition = "TEXT")
     private String type;
 
-    @Column(name = "prizeWinning", nullable = false)
     private Boolean prizeWinning;
 
     // Getters and setters
