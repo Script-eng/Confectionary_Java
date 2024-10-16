@@ -4,26 +4,25 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Column;
 
 @Entity
 public class Confections {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long confectionsID;
+    private Long confectionID;
     private String cname;
     private String type;
 
-    private Boolean prizeWinning;
+    private int prizeWinning;
 
     // Getters and setters
     public Long getConfectionsID() {
-        return confectionsID;
+        return confectionID;
     }
 
-    public void setConfectionsID(Long confectionsID) {
-        this.confectionsID = confectionsID;
+    public void setConfectionsID(Long confectionID) {
+        this.confectionID = confectionID;
     }
 
     public String getCname() {
@@ -42,11 +41,11 @@ public class Confections {
         this.type = type;
     }
 
-    public Boolean getPrizeWinning() {
+    public int getPrizeWinning() {
         return prizeWinning;
     }
 
-    public void setPrizeWinning(Boolean prizeWinning) {
+    public void setPrizeWinning(int prizeWinning) {
         this.prizeWinning = prizeWinning;
     }
 }

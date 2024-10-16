@@ -16,7 +16,7 @@ public class Prices {
 
     private Long price;
 
-    private Long unit;
+    private String unit;
 
     // Getters and setters
     public Long getPriceID() {
@@ -43,11 +43,11 @@ public class Prices {
         this.price = price;
     }
 
-    public Long getUnit() {
+    public String getUnit() {
         return unit;
     }
 
-    public void setUnit(Long unit) {
+    public void setUnit(String unit) {
         this.unit = unit;
     }
 }

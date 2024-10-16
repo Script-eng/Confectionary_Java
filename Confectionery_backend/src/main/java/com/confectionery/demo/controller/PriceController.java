@@ -9,7 +9,6 @@ import com.confectionery.demo.Service.PriceService;
 import com.confectionery.demo.model.Prices;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -28,6 +27,12 @@ public class PriceController {
     public List<Prices> getPriceByConfID(@PathVariable String confID) {
         return priceService.getPriceByConfID(confID);
     }
+
+    @GetMapping("/")
+    public String getMethodName() {
+        return "<h1>It works!</h1>";
+    }
+    
     
     
 }

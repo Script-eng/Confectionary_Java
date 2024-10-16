@@ -4,36 +4,39 @@ import com.confectionery.demo.model.Confections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@Controller
+
+@RestController
 public class ConfectionController {
 
     @Autowired
     private ConfectionService confectionService;
 
     @GetMapping("/getAllConfections")
-    public List<Confections> getAllConfections() {
+    public List getAllConfections() {
         return confectionService.getAllConfections();
     }
+
     @GetMapping("/getConfectionByName/{name}")
-    public String getConfectionByName(@PathVariable String name) {
-        return confectionService.getConfectionByName();
+    public List<Confections> getConfectionByName(@PathVariable String name) {
+        return confectionService.getConfectionByName(name);
     }
 
     @GetMapping("/getConfectionByPrize/{prize}")
-    public String confectionsByPrize(@PathVariable String prize) {
-        return new String();
+    public List getConfectionByPrize(@PathVariable int prize) {
+        return confectionService.getConfectionByPrize(prize);
     }
-    
+
     @GetMapping("/getConfectionByType/{type}")
-    public String getConfectionByType(@PathVariable String type) {
-        return new String();
+    public List getConfectionByType(@PathVariable String type) {
+        return confectionService.getConfectionByType(type);
     }
-    
+
+
     
 }
