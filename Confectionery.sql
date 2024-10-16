@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2024 at 10:55 AM
+-- Generation Time: Oct 16, 2024 at 12:30 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -40,6 +40,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `getConfectionByType` (IN `type` TEX
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getContentByFree` (IN `free` TEXT)   SELECT * from contents where contents.free=free$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getPriceByConfID` (IN `confID` INT)   SELECT * from prices where prices.confID=confID$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `isUser` (IN `userName` TEXT, IN `passWord` TEXT, OUT `userRole` TEXT)   SELECT login.user_roles from login where login.user_name=userName and login.pass_word=passWord$$
 
 DELIMITER ;
 
@@ -263,6 +265,28 @@ INSERT INTO `contents` (`contentid`, `confid`, `free`) VALUES
 (43, 129, 'G'),
 (44, 129, 'L'),
 (45, 15, 'É');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login`
+--
+
+CREATE TABLE `login` (
+  `userid` bigint(20) NOT NULL,
+  `user_name` text NOT NULL,
+  `email` text NOT NULL,
+  `pass_word` text NOT NULL,
+  `user_roles` text DEFAULT 'USER'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`userid`, `user_name`, `email`, `pass_word`, `user_roles`) VALUES
+(1, 'Albert', 'Alb@gmail.com', '1234', 'USER'),
+(2, 'Albert', 'Alb@gmail.com', '1234', 'USER');
 
 -- --------------------------------------------------------
 
@@ -507,11 +531,27 @@ ALTER TABLE `contents`
   ADD PRIMARY KEY (`contentid`);
 
 --
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`userid`);
+
+--
 -- Indexes for table `prices`
 --
 ALTER TABLE `prices`
   ADD PRIMARY KEY (`priceid`),
   ADD KEY `confID` (`confid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `userid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
