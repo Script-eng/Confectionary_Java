@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 13, 2024 at 08:03 PM
+-- Generation Time: Oct 16, 2024 at 10:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -18,27 +18,49 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Confectionery`
+-- Database: `confectionery`
 --
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllConfections` ()   SELECT * from confections$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllContents` ()   SELECT * from contents$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllPrices` ()   SELECT * from prices$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getConfectionByName` (IN `name` TEXT)   SELECT * FROM confections where confections.cname=name$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getConfectionByPrize` (IN `prize_winning` INT)   SELECT * from confections where confections.prize_winning=prize_winning$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getConfectionByType` (IN `type` TEXT)   SELECT * FROM confections where confections.type=type$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getContentByFree` (IN `free` TEXT)   SELECT * from contents where contents.free=free$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getPriceByConfID` (IN `confID` INT)   SELECT * from prices where prices.confID=confID$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Confections`
+-- Table structure for table `confections`
 --
 
-CREATE TABLE `Confections` (
-  `id` bigint(20) NOT NULL,
+CREATE TABLE `confections` (
+  `confectionid` bigint(20) NOT NULL,
   `cname` text DEFAULT NULL,
   `type` text DEFAULT NULL,
-  `prizewinning` bigint(20) DEFAULT NULL
+  `prize_winning` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Confections`
+-- Dumping data for table `confections`
 --
 
-INSERT INTO `Confections` (`confectionID`, `cname`, `type`, `prizewinning`) VALUES
+INSERT INTO `confections` (`confectionid`, `cname`, `type`, `prize_winning`) VALUES
 (1, 'Süni', 'mixed', 0),
 (2, 'Gesztenyealagút', 'mixed', 0),
 (3, 'Sajtos pogácsa salty', 'biscuit', 0),
@@ -48,7 +70,7 @@ INSERT INTO `Confections` (`confectionID`, `cname`, `type`, `prizewinning`) VALU
 (7, 'Eszterházy cake', 'slice', 0),
 (8, 'Rákóczi-túrós', 'pie', 0),
 (9, 'Meggyes kocka creamy', 'cake', 0),
-(10, 'Legényfogó', 'cake', -1),
+(10, 'Legényfogó', 'cake', 1),
 (11, 'Alpesi karamell cake', 'slice', 0),
 (12, 'Kókuszcsók sweet', 'biscuit', 0),
 (13, 'Habos mákos', 'pie', 0),
@@ -58,8 +80,8 @@ INSERT INTO `Confections` (`confectionID`, `cname`, `type`, `prizewinning`) VALU
 (17, 'Néró sweet', 'biscuit', 0),
 (18, 'Sacher cake', 'slice', 0),
 (19, 'Citrom cake', 'slice', 0),
-(20, 'Ribizlihabos-almás réteges special', 'cake', -1),
-(21, 'Három kívánság', 'cake', -1),
+(20, 'Ribizlihabos-almás réteges special', 'cake', 1),
+(21, 'Három kívánság', 'cake', 1),
 (22, 'Dobos', 'cake', 0),
 (23, 'Epres mascarpone cake', 'slice', 0),
 (24, 'Csokoládémousse', 'cake', 0),
@@ -110,7 +132,7 @@ INSERT INTO `Confections` (`confectionID`, `cname`, `type`, `prizewinning`) VALU
 (69, 'Málnás kocka creamy', 'cake', 0),
 (70, 'Sajttorta (málnás) cake', 'slice', 0),
 (71, 'Túrókrém gyümölccsel', 'cake', 0),
-(72, 'Csokis kaland special', 'cake', -1),
+(72, 'Csokis kaland special', 'cake', 1),
 (73, 'Somlói', 'cake', 0),
 (74, 'Palermo', 'cake', 0),
 (75, 'Szilvalekváros', 'roll', 0),
@@ -143,7 +165,7 @@ INSERT INTO `Confections` (`confectionID`, `cname`, `type`, `prizewinning`) VALU
 (102, 'Mézeskrémes', 'pie', 0),
 (103, 'Trüffel cake', 'slice', 0),
 (104, 'Szilvás papucs sweet', 'biscuit', 0),
-(105, 'Zalavári gesztenye', 'cake', -1),
+(105, 'Zalavári gesztenye', 'cake', 1),
 (106, 'Danubius', 'cake', 0),
 (107, 'Alpesi karamell', 'cake', 0),
 (108, 'Puncs', 'cake', 0),
@@ -182,20 +204,20 @@ INSERT INTO `Confections` (`confectionID`, `cname`, `type`, `prizewinning`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Contents`
+-- Table structure for table `contents`
 --
 
-CREATE TABLE `Contents` (
-  `id` bigint(20) DEFAULT NULL,
+CREATE TABLE `contents` (
+  `contentid` bigint(20) NOT NULL,
   `confid` bigint(20) DEFAULT NULL,
   `free` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Contents`
+-- Dumping data for table `contents`
 --
 
-INSERT INTO `Contents` (`contetID`, `confID`, `free`) VALUES
+INSERT INTO `contents` (`contentid`, `confid`, `free`) VALUES
 (1, 26, 'G'),
 (2, 37, 'L'),
 (3, 83, 'HC'),
@@ -245,21 +267,21 @@ INSERT INTO `Contents` (`contetID`, `confID`, `free`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Prices`
+-- Table structure for table `prices`
 --
 
-CREATE TABLE `Prices` (
-  `priceID` bigint(20) DEFAULT NULL,
-  `confID` bigint(20) DEFAULT NULL,
+CREATE TABLE `prices` (
+  `priceid` bigint(20) NOT NULL,
+  `confid` bigint(20) DEFAULT NULL,
   `price` bigint(20) DEFAULT NULL,
   `unit` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Prices`
+-- Dumping data for table `prices`
 --
 
-INSERT INTO `Prices` (`priceID`, `confID`, `price`, `unit`) VALUES
+INSERT INTO `prices` (`priceid`, `confid`, `price`, `unit`) VALUES
 (1, 32, 500, 'pce'),
 (2, 76, 10900, '16 slices'),
 (3, 106, 4300, '8 slices'),
@@ -473,10 +495,40 @@ INSERT INTO `Prices` (`priceID`, `confID`, `price`, `unit`) VALUES
 --
 
 --
--- Indexes for table `Confections`
+-- Indexes for table `confections`
 --
-ALTER TABLE `Confections`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `confections`
+  ADD PRIMARY KEY (`confectionid`);
+
+--
+-- Indexes for table `contents`
+--
+ALTER TABLE `contents`
+  ADD PRIMARY KEY (`contentid`);
+
+--
+-- Indexes for table `prices`
+--
+ALTER TABLE `prices`
+  ADD PRIMARY KEY (`priceid`),
+  ADD KEY `confID` (`confid`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `contents`
+--
+ALTER TABLE `contents`
+  ADD CONSTRAINT `contents_ibfk_1` FOREIGN KEY (`contentID`) REFERENCES `confections` (`confectionID`),
+  ADD CONSTRAINT `contents_ibfk_2` FOREIGN KEY (`contentID`) REFERENCES `confections` (`confectionID`);
+
+--
+-- Constraints for table `prices`
+--
+ALTER TABLE `prices`
+  ADD CONSTRAINT `prices_ibfk_1` FOREIGN KEY (`confID`) REFERENCES `confections` (`confectionID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
